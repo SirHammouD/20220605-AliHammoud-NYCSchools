@@ -23,7 +23,6 @@ class MainFragment : Fragment() {
     private lateinit var sharedViewModel: SharedViewModel
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var mainRecyclerAdapter: MainRecyclerAdapter = MainRecyclerAdapter()
-    //private var list: MutableList<MutableLiveData<SchoolsData>> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

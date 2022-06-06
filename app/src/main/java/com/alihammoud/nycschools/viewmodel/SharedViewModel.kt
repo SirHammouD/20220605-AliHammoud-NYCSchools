@@ -32,12 +32,9 @@ class SharedViewModel: ViewModel() {
     private var satData = MutableLiveData<List<SATData>>()
     val _satData: LiveData<List<SATData>> = satData
 
-    //lateinit var jsonObjectRequest: JsonObjectRequest
     lateinit var jsonArrayRequest: JsonArrayRequest
     private val ioScope = CoroutineScope(Dispatchers.IO + Job() )
 
-    val app_token: String = "YhvZ3lqLmtqMo8i0UFhl7xy79"
-    //?$app_token=APP_TOKEN
     val API_Schools: String = "https://data.cityofnewyork.us/resource/s3k6-pzi2.json"
     val API_SAT: String = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json"
 

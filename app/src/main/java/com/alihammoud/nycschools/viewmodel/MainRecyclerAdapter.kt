@@ -50,13 +50,19 @@ class MainRecyclerAdapter() : RecyclerView.Adapter<MainRecyclerAdapter.DataViewH
                 Uri.parse("google.navigation:q=" + currentItem.street + ", " + currentItem.city)
             )
             val context = holder.address_btn.context
-            //Toast.makeText(context,"maps",Toast.LENGTH_SHORT).show()
             context.startActivity(mapIntent)
         })
         holder.address.text = (currentItem.street + ", " + currentItem.city)
         holder.card.setOnClickListener {
 
-            passDetails(currentItem.id,currentItem.desc, currentItem.phone_number, currentItem.street + ", "+currentItem.city, currentItem.school_name, "50", currentItem.attendance_rate, currentItem.students_num)
+            var grad: String = "0"
+            if (currentItem.graduation_rate == null){
+                grad="0"
+            }
+            else{
+                grad=currentItem.graduation_rate
+            }
+            passDetails(currentItem.id,currentItem.desc, currentItem.phone_number, currentItem.street + ", "+currentItem.city, currentItem.school_name, grad, currentItem.attendance_rate, currentItem.students_num)
 
             setFragment.setFragmentToFragment(transaction,R.id.frame,detailsFragment)
 

@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +19,12 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
 
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment() , OnMapReadyCallback  {
 
     private lateinit var sharedViewModel: SharedViewModel
 
@@ -32,7 +35,8 @@ class DetailsFragment : Fragment() {
     lateinit var dataPieGrad: PieData
     lateinit var dataPieAtten: PieData
     lateinit var schoolID: String
-
+    var atten_rate: Float = 0f
+    var grad_rate: Float = 0f
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,8 +44,21 @@ class DetailsFragment : Fragment() {
         val binding = FragmentDetailsBinding.inflate(layoutInflater)
         val manager = (context as FragmentActivity).supportFragmentManager
         val args = this.arguments
-        schoolID = args?.get("id").toString()
 
+        /* var mapViewBundle: Bundle = Bundle()
+        if (savedInstanceState != null){
+            mapViewBundle = savedInstanceState.getBundle("Key")!!
+        }
+
+        binding.mapView.apply {
+            onCreate(mapViewBundle)
+            getMapAsync {
+            }
+        }*/
+
+        schoolID = args?.get("id").toString()
+        atten_rate = args?.get("atten").toString().toFloat()*100
+        grad_rate = args?.get("grad").toString().toFloat()*100
 
         fillPies()
 
@@ -57,10 +74,10 @@ class DetailsFragment : Fragment() {
             for (i in data) {
                 if (i.id == schoolID) {
 
+                        binding.mathAvg.text = i.math_avg
+                        binding.writingAvg.text = i.writing_avg
+                        binding.readingAvg.text = i.reading_avg
 
-                    binding.mathAvg.text = i.math_avg
-                    binding.writingAvg.text = i.writing_avg
-                    binding.readingAvg.text = i.reading_avg
                     binding.testTakers.text = i.takers_num
 
                 }
@@ -71,9 +88,7 @@ class DetailsFragment : Fragment() {
             binding.phone.text = "Phone Number: "+args?.get("phone").toString()
             binding.address.text = "Address: "+args?.get("address").toString()
 
-
         } )
-
 
 
         binding.gradRate.apply {
@@ -139,10 +154,11 @@ class DetailsFragment : Fragment() {
         pieListGrad = ArrayList()
         pieListAtten = ArrayList()
 
-        pieListGrad.add(PieEntry(72f, "Graduation Rate"))
-        pieListGrad.add(PieEntry(28f, "Drop Rate"))
-        pieListAtten.add(PieEntry(72f, "Attendance Rate"))
-        pieListAtten.add(PieEntry(28f, "Absence Rate"))
+
+        pieListGrad.add(PieEntry(grad_rate, "Graduation Rate"))
+        pieListGrad.add(PieEntry(100 - grad_rate, "Drop Rate"))
+        pieListAtten.add(PieEntry(atten_rate, "Attendance Rate"))
+        pieListAtten.add(PieEntry(100 - atten_rate, "Absence Rate"))
 
         dataSetGrad = PieDataSet(pieListGrad, "")
         dataSetAtten = PieDataSet(pieListAtten, "")
@@ -159,6 +175,10 @@ class DetailsFragment : Fragment() {
 
         dataPieGrad = PieData(dataSetGrad)
         dataPieAtten= PieData(dataSetAtten)
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+        TODO("Not yet implemented")
     }
 
 }
