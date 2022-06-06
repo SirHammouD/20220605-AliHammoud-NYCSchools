@@ -1,23 +1,20 @@
 package com.alihammoud.nycschools.viewmodel
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.alihammoud.nycschools.R
 import com.alihammoud.nycschools.model.SchoolsData
 import com.alihammoud.nycschools.view.DetailsFragment
-import com.alihammoud.nycschools.view.MainFragment
 
 class MainRecyclerAdapter() : RecyclerView.Adapter<MainRecyclerAdapter.DataViewHolder>(){
     private lateinit var list: List<SchoolsData>
@@ -32,6 +29,7 @@ class MainRecyclerAdapter() : RecyclerView.Adapter<MainRecyclerAdapter.DataViewH
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         val currentItem = list[position]
+
         val manager = (holder.itemView.context as FragmentActivity).supportFragmentManager
         val transaction = manager.beginTransaction()
 
@@ -44,12 +42,24 @@ class MainRecyclerAdapter() : RecyclerView.Adapter<MainRecyclerAdapter.DataViewH
             val context = holder.phone_btn.context
             context.startActivity(dialIntent)
         })
-        holder.address_btn.text = (currentItem.street + ", " + currentItem.city)
+        holder.address_btn.text = ("Show on Maps")
+        holder.address_btn.setOnClickListener(View.OnClickListener {
+
+            val mapIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("google.navigation:q=" + currentItem.street + ", " + currentItem.city)
+            )
+            val context = holder.address_btn.context
+            //Toast.makeText(context,"maps",Toast.LENGTH_SHORT).show()
+            context.startActivity(mapIntent)
+        })
         holder.address.text = (currentItem.street + ", " + currentItem.city)
         holder.card.setOnClickListener {
+
+            passDetails(currentItem.id,currentItem.desc, currentItem.phone_number, currentItem.street + ", "+currentItem.city, currentItem.school_name, "50", currentItem.attendance_rate, currentItem.students_num)
+
             setFragment.setFragmentToFragment(transaction,R.id.frame,detailsFragment)
-            //send bundles
-            //currentItem.id
+
 
         }
     }
@@ -69,5 +79,19 @@ class MainRecyclerAdapter() : RecyclerView.Adapter<MainRecyclerAdapter.DataViewH
     }
     fun setData(newlist: List<SchoolsData>){
       list = newlist
+    }
+
+    fun passDetails(id: String, desc: String, phone: String, address: String, name: String, grad: String, atten: String, studentNum: String){
+        val bundle = Bundle()
+        bundle.putString("id", id)
+        bundle.putString("desc", desc)
+        bundle.putString("phone", phone)
+        bundle.putString("address", address)
+        bundle.putString("studentNum", studentNum)
+        bundle.putString("name", name)
+        bundle.putString("grad", grad)
+        bundle.putString("atten", atten)
+        detailsFragment.arguments = bundle
+
     }
 }

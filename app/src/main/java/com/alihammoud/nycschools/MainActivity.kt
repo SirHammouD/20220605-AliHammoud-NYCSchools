@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         mainFragment = MainFragment()
         setFragment.setFragmentToActivity(supportFragmentManager,R.id.frame,mainFragment)
 
+
     }
 
 

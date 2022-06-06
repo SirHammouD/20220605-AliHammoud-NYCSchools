@@ -41,8 +41,9 @@ class SharedViewModel: ViewModel() {
     val API_Schools: String = "https://data.cityofnewyork.us/resource/s3k6-pzi2.json"
     val API_SAT: String = "https://data.cityofnewyork.us/resource/f9bf-2cp4.json"
 
-    lateinit var schoolList: List<SchoolsData>
-    lateinit var satList: List<SATData>
+
+    private lateinit var schoolList: List<SchoolsData>
+    private lateinit var satList: List<SATData>
 
     fun getData(context: Context) {
 
