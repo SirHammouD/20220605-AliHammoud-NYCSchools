@@ -15,7 +15,9 @@ data class SchoolsData(
     @SerializedName("primary_address_line_1")
     val street: String,
     @SerializedName("city")
-    val city: String
+    val city: String,
+    @SerializedName("phone_number")
+    val phone_number: String
 
 
 )

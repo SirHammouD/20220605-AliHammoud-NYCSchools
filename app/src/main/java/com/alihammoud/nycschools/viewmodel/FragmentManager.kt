@@ -17,6 +17,7 @@ class FragmentManager {
     fun setFragmentToFragment(manager: FragmentTransaction,frameId: Int ,fragment: Fragment){
             manager
                 .replace(frameId,fragment)
+                .addToBackStack("saved")
                 .commit()
 
     }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item"
     android:elevation="20dp"
     app:cardCornerRadius="15dp"
     android:layout_margin="10dp"
@@ -37,15 +38,23 @@
                             android:orientation="horizontal"
                             android:weightSum="2">
 
-                                <ImageButton
+                                <Button
+                                    android:background="@drawable/trans_btn"
+                                    android:backgroundTint="@drawable/trans_btn"
+                                    android:autoSizeTextType="uniform"
+                                    android:id="@+id/phone_btn"
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:layout_margin="10dp"
                                     android:layout_weight="1" />
 
-                                <ImageButton
+                                <Button
+                                    android:background="@drawable/trans_btn"
+                                    android:backgroundTint="@drawable/trans_btn"
+                                    android:autoSizeTextType="uniform"
+                                    android:id="@+id/address_btn"
                                     android:layout_width="match_parent"
-                                    android:layout_height="20dp"
+                                    android:layout_height="40dp"
                                     android:layout_margin="10dp"
                                     android:layout_weight="1" />
 
