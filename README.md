@@ -22,8 +22,8 @@ Create a native app (no react-native and or flutter) to provide information on N
 # Features:
 * All the main requiremnts have been met (Error Handling, Stability, Speed)
 * Native Android Application using Kotlin
+* Model-View-ViewModel (MVVM) design
 * Robust UX and UI (cardview, google material design, custom fonts, and dynamic views)
-* MVVM design
 * Phone Intent (Direct calling)
 * Google Maps Intent (Direct directions)
 * JSON PArsing using Gson
@@ -47,3 +47,10 @@ Planned for future:
 * More UX/UI improvements 
 
 # Photos:
+<img src="https://user-images.githubusercontent.com/35141264/172222229-eb5a5ca2-99a5-4996-93c3-4993ab8bccaa.png" width="200" height="400"/>
+<img src="https://user-images.githubusercontent.com/35141264/172222238-fca9988b-5f48-4b92-b70a-6c7cae127ffb.png" width="200" height="400"/>
+<img src="https://user-images.githubusercontent.com/35141264/172222269-27452766-1d75-49c3-ba30-376b35cdf66b.png" width="200" height="400"/>
+<img src="https://user-images.githubusercontent.com/35141264/172222278-0b2151ec-1b45-4cf1-b697-8f01cad51411.png" width="200" height="400"/>
+<img src="https://user-images.githubusercontent.com/35141264/172222292-22edf6a7-36ab-4c1d-9019-30b4d3fabf90.png" width="200" height="400"/>
+
+
