@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class SchoolsData(
 
+    //Define the Data types and variables, match the JSON Array using @SerializedName
+
     @SerializedName("dbn")
     val id: String,
 

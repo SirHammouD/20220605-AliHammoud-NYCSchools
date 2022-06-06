@@ -4,10 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 data class SATData(
 
+    //Define the Data types and variables, match the JSON Array using @SerializedName
+
     @SerializedName("dbn")
     val id: String,
     @SerializedName("school_name")
     val school_name: String,
+
     @SerializedName("num_of_sat_test_takers")
     val takers_num: String,
     @SerializedName("sat_critical_reading_avg_score")
