@@ -35,6 +35,15 @@ Create a native app (no react-native and or flutter) to provide information on N
 * Asynchronous Programming
 * One Activity that uses a Fragment manager
 
-# Notes:
+# Notes - Future Improvements:
+Due to the limited time and resources, there were some features that didn't get to see the light.
+Planned for future:
+* Pagination
+* Search Bar
+* More Statistical Charts
+* In App MapView
+* More Transitional Animation
+* Expand Data availability
+* More UX/UI improvements 
 
 # Photos:
